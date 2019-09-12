@@ -4,6 +4,10 @@ set -euo pipefail
 
 [[ -z "${DEBUG:-""}" ]] || set -x
 
-T_expressions() {
-    true
+# shellcheck source=expressions.bash
+. lib/expressions.bash
+
+T_expr_addition() {
+    RESULT=$(exp_eval "1 + 1")
+    [[ $RESULT == "2" ]]
 }
