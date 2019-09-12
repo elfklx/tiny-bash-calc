@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+[[ -z "${DEBUG:-""}" ]] || set -x
+
+usage() {
+    echo "usage: $0"
+    echo
+    echo "A simple interactive calculator. Written for fun. Not for actual use"
+}
+
+main() {
+  if [[ "$#" -ne 0 ]]
+  then
+    fail "$(usage)"
+  fi
+
+  echo -n "> "
+  read -r EXPR
+  echo "you asked about ${EXPR}"
+}
+
+fail() {
+  MESSAGE="$1"
+  echo "$MESSAGE" >&2
+  exit 1
+}
+
+main "$@"
+

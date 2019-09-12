@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# See https://medium.com/@kentbeck_7670/limbo-on-the-cheap-e4cfae840330
+# and https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864
+
+if ./test ; then
+    git commit -am working
+else
+    git reset --hard
+fi

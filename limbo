@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# See https://medium.com/@kentbeck_7670/limbo-on-the-cheap-e4cfae840330
+# and https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864
+
+while true ; do
+    git pull --rebase
+    git push
+done
