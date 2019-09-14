@@ -17,7 +17,7 @@ T_expr_subtraction() {
     [[ $RESULT == "9" ]]
 }
 
-_exp_eval_uses_parser_and_evaluator() {
+T_exp_eval_uses_parser_and_evaluator() {
     expr="some expression"
     
     function parse() {
