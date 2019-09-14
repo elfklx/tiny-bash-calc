@@ -4,8 +4,8 @@ set -euo pipefail
 
 [[ -z "${DEBUG:-""}" ]] || set -x
 
-T_calc_reads_an_expression() {
-    EXPR="test expr"
+_calc_reads_an_expression() {
+    EXPR="8 + 3"
     RESULT=$(echo "$EXPR" | ./calc)
-    [[ "$RESULT" =~ "you asked about $EXPR" ]]
+    [[ "$RESULT" =~ "11" ]]
 }
