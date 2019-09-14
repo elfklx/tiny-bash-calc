@@ -9,12 +9,13 @@ parse() {
     local expr="${1:?expected first argument to parse to be an expression}"
     local ast="${2:?expected second argument to parse to be a path where we write the result}"
 
-    # shelcheck disable=2076
+    if [[ -f "${ast}" ]] ; then rm "${ast}" ; fi
+
+	# shelcheck disable=2076
     if [[ "${expr}" =~ "+" ]] ; then
 	# add expression
 	local lhs="${expr/+*}"
 	local rhs="${expr/*+}"
-	if [[ -f "${ast}" ]] ; then rm "${ast}" ; fi
 	if [[ ! -d "${ast}" ]] ; then mkdir "${ast}" ; fi
 	parse "${lhs}" "${ast}/LHS"
 	parse "${rhs}" "${ast}/RHS"
