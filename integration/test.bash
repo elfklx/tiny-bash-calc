@@ -10,7 +10,7 @@ T_calc_evaluates_an_expression() {
     [[ "$RESULT" =~ "11" ]]
 }
 
-_calc_evaluates_multiple_expressions() {
+T_calc_evaluates_multiple_expressions() {
     EXPR="8 + 3\n12 - 5\nq"
     RESULT=$(echo -e "$EXPR" | ./calc)
     if [[ ! $RESULT =~ "11" ]] ; then

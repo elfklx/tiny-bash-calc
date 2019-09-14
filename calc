@@ -20,7 +20,11 @@ main() {
 
   echo -n "> "
   read -r EXPR
-  exp_eval "$EXPR"
+  while [[ ${EXPR} != "q" ]] ; do
+      exp_eval "$EXPR"
+      echo -n "> "
+      read -r EXPR
+  done
 }
 
 fail() {
