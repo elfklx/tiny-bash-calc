@@ -48,7 +48,7 @@ T_parsing_a_simple_add_expression_writes_a_directory() {
     rmdir "${result_path}"
 }
 
-_parsing_add_expressions_handles_whitespace() {
+T_parsing_add_expressions_handles_whitespace() {
     tmpdir="$(dirname "$(mktemp -u)")"
     result_path="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
 
