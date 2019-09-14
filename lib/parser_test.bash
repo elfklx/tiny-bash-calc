@@ -33,12 +33,17 @@ _parsing_a_simple_add_expression_writes_a_directory() {
 	#shellcheck disable=2154
 	$T_fail "expected result LHS to be 2"
     fi
+    read -r op <"${result_file}/operator"
+    if [[ $op != "+" ]] ; then
+	#shellcheck disable=2154
+	$T_fail "expected result operator to be +"
+    fi
     read -r rhs <"${result_file}/RHS"
     if [[ $rhs != "8" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result RHS to be 8"
     fi
 
-    rm "${result_file}/LHS" "${result_file}/RHS"
+    rm "${result_file}/LHS" "${result_file}/operator" "${result_file}/RHS"
     rmdir "${result_file}"
 }
