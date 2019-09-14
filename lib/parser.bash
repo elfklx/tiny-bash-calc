@@ -5,6 +5,7 @@ set -euo pipefail
 [[ -z "${DEBUG:-""}" ]] || set -x
 
 parse() {
+    echo "parse called with <$1> and <$2>" >> /tmp/gdslog
     expr="${1:?expected first argument to parse to be an expression}"
     ast="${2:?expected second argument to parse to be a path where we write the result}"
 
