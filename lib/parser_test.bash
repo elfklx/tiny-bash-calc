@@ -18,7 +18,7 @@ T_parsing_number_writes_a_single_file() {
     [[ $result == "87" ]]
 }
 
-_parsing_a_simple_add_expression_writes_a_directory() {
+T_parsing_a_simple_add_expression_writes_a_directory() {
     tmpdir="$(dirname "$(mktemp -u)")"
     result_path="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
 
@@ -28,22 +28,22 @@ _parsing_a_simple_add_expression_writes_a_directory() {
 	#shellcheck disable=2154
 	$T_fail "expected result path to be a directory"
     fi
-    read -r lhs <"${result_file}/LHS"
+    read -r lhs <"${result_path}/LHS"
     if [[ $lhs != "2" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result LHS to be 2"
     fi
-    read -r op <"${result_file}/operator"
+    read -r op <"${result_path}/operator"
     if [[ $op != "+" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result operator to be +"
     fi
-    read -r rhs <"${result_file}/RHS"
+    read -r rhs <"${result_path}/RHS"
     if [[ $rhs != "8" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result RHS to be 8"
     fi
 
-    rm "${result_file}/LHS" "${result_file}/operator" "${result_file}/RHS"
-    rmdir "${result_file}"
+    rm "${result_path}/LHS" "${result_path}/operator" "${result_path}/RHS"
+    rmdir "${result_path}"
 }
