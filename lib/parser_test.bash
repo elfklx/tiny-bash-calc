@@ -47,3 +47,29 @@ T_parsing_a_simple_add_expression_writes_a_directory() {
     rm "${result_path}/LHS" "${result_path}/operator" "${result_path}/RHS"
     rmdir "${result_path}"
 }
+
+_parsing_add_expressions_handles_whitespace() {
+    tmpdir="$(dirname "$(mktemp -u)")"
+    result_path="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+
+    parse " 2 + 8 " "${result_path}"
+
+    read -r lhs <"${result_path}/LHS"
+    if [[ $lhs != "2" ]] ; then
+	#shellcheck disable=2154
+	$T_fail "expected result LHS to be 2"
+    fi
+    read -r op <"${result_path}/operator"
+    if [[ $op != "+" ]] ; then
+	#shellcheck disable=2154
+	$T_fail "expected result operator to be +"
+    fi
+    read -r rhs <"${result_path}/RHS"
+    if [[ $rhs != "8" ]] ; then
+	#shellcheck disable=2154
+	$T_fail "expected result RHS to be 8"
+    fi
+
+    rm "${result_path}/LHS" "${result_path}/operator" "${result_path}/RHS"
+    rmdir "${result_path}"
+}
