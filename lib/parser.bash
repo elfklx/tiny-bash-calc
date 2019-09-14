@@ -6,18 +6,18 @@ set -euo pipefail
 
 parse() {
     echo "parse called with <$1> and <$2>" >> /tmp/gdslog
-    expr="${1:?expected first argument to parse to be an expression}"
-    ast="${2:?expected second argument to parse to be a path where we write the result}"
+    local expr="${1:?expected first argument to parse to be an expression}"
+    local ast="${2:?expected second argument to parse to be a path where we write the result}"
 
     # shelcheck disable=2076
     if [[ "${expr}" =~ "+" ]] ; then
 	# add expression
-	lhs="${expr/+*}"
-	rhs="${expr/*+}"
+	local lhs="${expr/+*}"
+	local rhs="${expr/*+}"
 	if [[ -f "${ast}" ]] ; then rm "${ast}" ; fi
 	if [[ ! -d "${ast}" ]] ; then mkdir "${ast}" ; fi
-	echo "${lhs}" > "${ast}/LHS"
-	echo "${rhs}" > "${ast}/RHS"
+	parse "${lhs}" "${ast}/LHS"
+	parse "${rhs}" "${ast}/RHS"
 	echo "+" > "${ast}/operator"
     else
 	# number expression    
