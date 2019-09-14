@@ -36,5 +36,6 @@ T_exp_eval_uses_parser_and_evaluator() {
 	echo "fake result"
     }
 
-    exp_eval_new "${expr}"
+    RESULT="$(exp_eval_new "${expr}")"
+    [[ $RESULT == "fake result" ]]
 }
