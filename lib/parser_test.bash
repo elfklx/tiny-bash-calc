@@ -7,7 +7,7 @@ set -euo pipefail
 # shellcheck source=parser.bash
 . lib/parser.bash
 
-_parser_writes_to_output_file() {
+T_parser_writes_to_output_file() {
     tmpdir="$(dirname "$(mktemp -u)")"
     result_file="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
 
