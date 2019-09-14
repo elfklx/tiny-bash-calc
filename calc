@@ -4,6 +4,8 @@ set -euo pipefail
 
 [[ -z "${DEBUG:-""}" ]] || set -x
 
+. lib/expressions.bash 
+
 usage() {
     echo "usage: $0"
     echo
