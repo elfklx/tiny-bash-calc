@@ -20,7 +20,7 @@ main() {
 
   echo -n "> "
   read -r EXPR
-  echo "you asked about ${EXPR}"
+  exp_eval "$EXPR"
 }
 
 fail() {
