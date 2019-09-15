@@ -120,7 +120,7 @@ _parsing_complex_add_expressions_works() {
     rmdir "${result_path}/RHS" "${result_path}" 
 }
 
-_parsing_subtraction_writes_a_directory() {
+T_parsing_subtraction_writes_a_directory() {
     tmpdir="$(dirname "$(mktemp -u)")"
     result_path="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
 
