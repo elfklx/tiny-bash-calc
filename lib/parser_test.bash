@@ -111,11 +111,11 @@ _parsing_complex_add_expressions_works() {
     	$T_fail "expected result RHS/RHS to be 37"
     fi
 
-    # rm "${result_path}/LHS" \
-    #    "${result_path}/operator" \
-    #    "${result_path}/RHS/LHS" \
-    #    "${result_path}/RHS/RHS" \
-    #    "${result_path}/RHS/operator" \
+    rm "${result_path}/LHS" \
+       "${result_path}/operator" \
+       "${result_path}/RHS/LHS" \
+       "${result_path}/RHS/RHS" \
+       "${result_path}/RHS/operator"
        
-    # rmdir "${result_path}/RHS" "${result_path}" 
+    rmdir "${result_path}/RHS" "${result_path}" 
 }
