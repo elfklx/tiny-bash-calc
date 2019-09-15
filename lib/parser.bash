@@ -11,8 +11,15 @@ parse() {
 
     if [[ -f "${ast}" ]] ; then rm "${ast}" ; fi
 
-	# shelcheck disable=2076
-    if [[ "${expr}" =~ "+" ]] ; then
+    if [[ "${expr}" =~ "-" ]] ; then
+	# subtract expression
+	local lhs="${expr/-*}"
+	local rhs="${expr/*-}"
+	if [[ ! -d "${ast}" ]] ; then mkdir "${ast}" ; fi
+	parse "${lhs}" "${ast}/LHS"
+	parse "${rhs}" "${ast}/RHS"
+	echo "-" > "${ast}/operator"    
+    elif [[ "${expr}" =~ "+" ]] ; then
 	# add expression
 	local lhs="${expr/+*}"
 	local rhs="${expr/*+}"
