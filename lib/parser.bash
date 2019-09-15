@@ -5,7 +5,6 @@ set -euo pipefail
 [[ -z "${DEBUG:-""}" ]] || set -x
 
 parse() {
-    echo "parse called with <$1> and <$2>" >> /tmp/gdslog
     local expr="${1:?expected first argument to parse to be an expression}"
     local ast="${2:?expected second argument to parse to be a path where we write the result}"
 
@@ -31,4 +30,17 @@ parse() {
 	# number expression    
 	echo "${expr}" > "${ast}"
     fi
+}
+
+parse_binexp() {
+    local op="${1:?expected first argument of parse_binop to be an operator}"
+    local expr="${2:?expected second argument of parse_binop to be an expression}"
+    local ast="${3:?expected third argument of parse_binop to be a path where we write the result}"
+
+    local lhs="${expr/${op}*}"
+    local rhs="${expr/*${op}}"
+    if [[ ! -d "${ast}" ]] ; then mkdir "${ast}" ; fi
+    parse "${lhs}" "${ast}/LHS"
+    parse "${rhs}" "${ast}/RHS"
+    echo "${op}" > "${ast}/operator"    
 }
