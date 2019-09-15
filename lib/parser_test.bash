@@ -95,11 +95,11 @@ _parsing_complex_add_expressions_works() {
     	#shellcheck disable=2154
     	$T_fail "expected result RHS to be a directory"
     fi
-    # read -r rhs <"${result_path}/RHS/LHS"
-    # if [[ $rhs != "8" ]] ; then
-    # 	#shellcheck disable=2154
-    # 	$T_fail "expected result RHS/LHS to be 8"
-    # fi
+    read -r mid <"${result_path}/RHS/LHS"
+    if [[ $mid != "8" ]] ; then
+    	#shellcheck disable=2154
+    	$T_fail "expected result RHS/LHS to be 8"
+    fi
     # read -r op <"${result_path}/RHS/operator"
     # if [[ $op != "+" ]] ; then
     # 	#shellcheck disable=2154
