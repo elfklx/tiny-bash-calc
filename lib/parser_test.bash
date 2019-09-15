@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -u
 
 [[ -z "${DEBUG:-""}" ]] || set -x
 
@@ -91,10 +91,10 @@ _parsing_complex_add_expressions_works() {
     	$T_fail "expected result operator to be +"
     fi
 
-    # if [[ ! -d "${result_path}/RHS" ]] ; then
-    # 	#shellcheck disable=2154
-    # 	$T_fail "expected result RHS to be a directory"
-    # fi
+    if [[ ! -d "${result_path}/RHS" ]] ; then
+    	#shellcheck disable=2154
+    	$T_fail "expected result RHS to be a directory"
+    fi
     # read -r rhs <"${result_path}/RHS/LHS"
     # if [[ $rhs != "8" ]] ; then
     # 	#shellcheck disable=2154
