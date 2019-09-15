@@ -119,3 +119,29 @@ _parsing_complex_add_expressions_works() {
        
     rmdir "${result_path}/RHS" "${result_path}" 
 }
+
+_parsing_subtraction_writes_a_directory() {
+    tmpdir="$(dirname "$(mktemp -u)")"
+    result_path="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+
+    parse " 26 - 9 " "${result_path}"
+
+    read -r lhs <"${result_path}/LHS"
+    if [[ $lhs != "26" ]] ; then
+	#shellcheck disable=2154
+	$T_fail "expected result LHS to be 26"
+    fi
+    read -r op <"${result_path}/operator"
+    if [[ $op != "-" ]] ; then
+	#shellcheck disable=2154
+	$T_fail "expected result operator to be -"
+    fi
+    read -r rhs <"${result_path}/RHS"
+    if [[ $rhs != "9" ]] ; then
+	#shellcheck disable=2154
+	$T_fail "expected result RHS to be 9"
+    fi
+
+    rm "${result_path}/LHS" "${result_path}/operator" "${result_path}/RHS"
+    rmdir "${result_path}"    
+}
