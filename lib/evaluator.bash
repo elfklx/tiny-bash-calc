@@ -11,8 +11,8 @@ evaluate() {
 	return
     fi
 
-    read -r lhs <"${ast}/LHS"
-    read -r rhs <"${ast}/RHS"
+    lhs="$(cat "${ast}/LHS")"
+    rhs="$(cat "${ast}/RHS")"
     rm "${ast}/LHS"
     rm "${ast}/RHS"
     rm "${ast}/operator"

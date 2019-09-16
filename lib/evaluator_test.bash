@@ -19,7 +19,8 @@ T_evaluating_a_number_is_a_no_op() {
     [[ $result == "32" ]]
 }
 
-_evaluating_a_simple_addition_leaves_the_result() {
+T_evaluating_a_simple_addition_leaves_the_result() {
+    set -x
     tmpdir="$(dirname "$(mktemp -u)")"
     ast="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
     rm "${ast}"
