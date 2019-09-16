@@ -13,9 +13,14 @@ evaluate() {
 
     lhs="$(cat "${ast}/LHS")"
     rhs="$(cat "${ast}/RHS")"
+    op="$(cat "${ast}/operator")"
     rm "${ast}/LHS"
     rm "${ast}/RHS"
     rm "${ast}/operator"
     rmdir "${ast}"
-    echo "$(( lhs + rhs ))" > "${ast}"
+    if [[ "${op}" == "+" ]] ; then
+	echo "$(( lhs + rhs ))" > "${ast}"
+    else
+	echo "$(( lhs - rhs ))" > "${ast}"
+    fi
 }
