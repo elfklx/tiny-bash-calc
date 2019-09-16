@@ -7,7 +7,7 @@ set -u
 # shellcheck source=evaluator.bash
 . lib/evaluator.bash
 
-_evaluating_a_number_is_a_no_op() {
+T_evaluating_a_number_is_a_no_op() {
     tmpdir="$(dirname "$(mktemp -u)")"
     ast="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
     echo "32" > "${ast}"
