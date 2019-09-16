@@ -18,3 +18,16 @@ T_evaluating_a_number_is_a_no_op() {
     rm "${ast}"
     [[ $result == "32" ]]
 }
+
+_evaluating_a_simple_addition_leaves_the_result() {
+    tmpdir="$(dirname "$(mktemp -u)")"
+    ast="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+    rm "${ast}"
+    cp -r "fixtures/TwelvePlusThree" "${ast}"
+
+    evaluate "${ast}"
+
+    read -r result <"${ast}"
+    rm "${ast}"
+    [[ $result == "15" ]]
+}
