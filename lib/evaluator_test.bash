@@ -32,7 +32,7 @@ T_evaluating_a_simple_addition_leaves_the_result() {
     [[ $result == "15" ]]
 }
 
-_evaluating_a_simple_subtraction_leaves_the_result() {
+T_evaluating_a_simple_subtraction_leaves_the_result() {
     tmpdir="$(dirname "$(mktemp -u)")"
     ast="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
     rm "${ast}"
