@@ -105,31 +105,37 @@ _parsing_complex_add_expressions_works() {
     if [[ $lhs != "2" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result LHS to be 2"
+	return
     fi
     read -r op <"${result_path}/operator"
     if [[ $op != "+" ]] ; then
     	#shellcheck disable=2154
     	$T_fail "expected result operator to be +"
+	return
     fi
 
     if [[ ! -d "${result_path}/RHS" ]] ; then
     	#shellcheck disable=2154
     	$T_fail "expected result RHS to be a directory"
+	return
     fi
     read -r mid <"${result_path}/RHS/LHS"
     if [[ $mid != "8" ]] ; then
     	#shellcheck disable=2154
     	$T_fail "expected result RHS/LHS to be 8"
+	return
     fi
     read -r op <"${result_path}/RHS/operator"
     if [[ $op != "+" ]] ; then
     	#shellcheck disable=2154
     	$T_fail "expected result RHS operator to be +"
+	return
     fi
     read -r rhs <"${result_path}/RHS/RHS"
     if [[ $rhs != "37" ]] ; then
     	#shellcheck disable=2154
     	$T_fail "expected result RHS/RHS to be 37"
+	return
     fi
 
     cleanup_tmpfile "${result_path}" 
@@ -144,16 +150,19 @@ T_parsing_subtraction_writes_a_directory() {
     if [[ $lhs != "26" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result LHS to be 26"
+	return
     fi
     read -r op <"${result_path}/operator"
     if [[ $op != "-" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result operator to be -"
+	return
     fi
     read -r rhs <"${result_path}/RHS"
     if [[ $rhs != "9" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result RHS to be 9"
+	return
     fi
 
     cleanup_tmpfile "${result_path}"    
