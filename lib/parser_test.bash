@@ -7,9 +7,13 @@ set -u
 # shellcheck source=parser.bash
 . lib/parser.bash
 
-T_parsing_number_writes_a_single_file() {
+setup_tmpfile() {
     tmpdir="$(dirname "$(mktemp -u)")"
-    result_file="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+    mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp"
+}
+
+T_parsing_number_writes_a_single_file() {
+    result_file="$(setup_tmpfile)"
 
     parse "87" "${result_file}"
 
