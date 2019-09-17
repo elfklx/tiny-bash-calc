@@ -34,6 +34,15 @@ T_new_expr_addition() {
     fi
 }
 
+T_new_expr_subtraction() {
+    RESULT=$(exp_eval_new "12 - 3")
+    if [[ $RESULT != "9" ]] ; then
+	# shellcheck disable=2154
+	$T_fail "expected ${RESULT} to equal 9"
+	return
+    fi
+}
+
 _exp_eval_uses_parser_and_evaluator() {
     local expr="some expression"
     export _CALC_TEST_AST_PATH=""
