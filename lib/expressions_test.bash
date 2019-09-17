@@ -11,7 +11,7 @@ T_expr_addition() {
     RESULT=$(exp_eval "1 + 1")
     if [[ $RESULT != "2" ]] ; then
 	# shellcheck disable=2154
-	$T_fail "expected ${RESULT} to equal 9"
+	$T_fail "expected ${RESULT} to equal 2"
 	return
     fi
 }
