@@ -31,6 +31,9 @@ T_exp_eval_uses_parser_and_evaluator() {
     }
 
     RESULT="$(exp_eval "${expr}")"
-    [[ $RESULT == "fake result" ]]
+    if [[ $RESULT != "fake result" ]] ; then
+	$T_fail "Expected '${RESULT}' to equal 'fake result'"
+	return
+    fi
 }
 
