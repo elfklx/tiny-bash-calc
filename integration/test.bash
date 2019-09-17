@@ -12,11 +12,13 @@ T_calc_evaluates_an_expression() {
 }
 
 T_calc_evaluates_multiple_expressions() {
-    EXPR="8 + 3\n12 - 5\nq"
-    RESULT=$(echo -e "$EXPR" | ./calc)
-    if [[ ! $RESULT =~ "11" ]] ; then
+    local expr="8 + 3\n12 - 5\nq"
+    local result
+    result=$(echo -e "$expr" | ./calc)
+    if [[ ! $result =~ "11" ]] ; then
 	  # shellcheck disable=SC2154
-	$T_fail "first expression didn't evaluate"
+	$T_fail "first expression gave $result -- expected 11"
+	return
     fi
-    [[ "$RESULT" =~ "7" ]]
+    [[ "$result" =~ "7" ]]
 }
