@@ -10,10 +10,6 @@ set -euo pipefail
 . lib/evaluator.bash
 
 exp_eval() {
-    echo "$(( $1 ))"
-}
-
-exp_eval_new() {
     local tmpdir
     tmpdir="$(dirname "$(mktemp -u)")"
     local ast_path
