@@ -124,13 +124,7 @@ _parsing_complex_add_expressions_works() {
     	$T_fail "expected result RHS/RHS to be 37"
     fi
 
-    rm "${result_path}/LHS" \
-       "${result_path}/operator" \
-       "${result_path}/RHS/LHS" \
-       "${result_path}/RHS/RHS" \
-       "${result_path}/RHS/operator"
-       
-    rmdir "${result_path}/RHS" "${result_path}" 
+    cleanup_tmpfile "${result_path}" 
 }
 
 T_parsing_subtraction_writes_a_directory() {
@@ -154,6 +148,5 @@ T_parsing_subtraction_writes_a_directory() {
 	$T_fail "expected result RHS to be 9"
     fi
 
-    rm "${result_path}/LHS" "${result_path}/operator" "${result_path}/RHS"
-    rmdir "${result_path}"    
+    cleanup_tmpfile "${result_path}"    
 }
