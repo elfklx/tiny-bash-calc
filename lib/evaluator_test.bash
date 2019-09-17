@@ -47,5 +47,8 @@ T_evaluating_a_simple_subtraction_leaves_the_result() {
 
     read -r result <"${ast}"
     cleanup_tmpfile "${ast}"
-    [[ $result == "9" ]]    
+    if [[ $result != "9" ]] ; then
+	$T_fail "expected ${result} to equal 9"
+	return
+    fi
 }
