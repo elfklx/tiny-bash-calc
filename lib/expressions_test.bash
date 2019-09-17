@@ -25,7 +25,16 @@ T_expr_subtraction() {
     fi
 }
 
-T_exp_eval_uses_parser_and_evaluator() {
+T_new_expr_addition() {
+    RESULT=$(exp_eval_new "1 + 1")
+    if [[ $RESULT != "2" ]] ; then
+	# shellcheck disable=2154
+	$T_fail "expected ${RESULT} to equal 2"
+	return
+    fi
+}
+
+_exp_eval_uses_parser_and_evaluator() {
     local expr="some expression"
     export _CALC_TEST_AST_PATH=""
     
