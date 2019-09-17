@@ -13,24 +13,26 @@ usage() {
 }
 
 main() {
-  if [[ "$#" -ne 0 ]]
-  then
-    fail "$(usage)"
-  fi
+    local expr
 
-  echo -n "> "
-  read -r EXPR
-  while [[ ${EXPR} != "q" ]] ; do
-      exp_eval "$EXPR"
-      echo -n "> "
-      read -r EXPR
-  done
+    if [[ "$#" -ne 0 ]]
+    then
+	fail "$(usage)"
+    fi
+    
+    echo -n "> "
+    read -r expr
+    while [[ ${expr} != "q" ]] ; do
+	exp_eval "$expr"
+	echo -n "> "
+	read -r expr
+    done
 }
 
 fail() {
-  MESSAGE="$1"
-  echo "$MESSAGE" >&2
-  exit 1
+    local message="${1:-Calc Failed}"
+    echo "$message" >&2
+    exit 1
 }
 
 main "$@"
