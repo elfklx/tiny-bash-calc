@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -u
+set -euo pipefail
 
 [[ -z "${DEBUG:-""}" ]] || set -x
 
