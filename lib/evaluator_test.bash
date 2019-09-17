@@ -1,46 +1,48 @@
 #!/usr/bin/env bash
 
-set -u
+set -euo pipefail
 
 [[ -z "${DEBUG:-""}" ]] || set -x
 
+# shellcheck source=test_helpers.bash
+. lib/test_helpers.bash
 # shellcheck source=evaluator.bash
 . lib/evaluator.bash
 
 T_evaluating_a_number_is_a_no_op() {
-    tmpdir="$(dirname "$(mktemp -u)")"
-    ast="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+    ast="$(setup_tmpfile)"
     echo "32" > "${ast}"
 
     evaluate "${ast}"
 
     read -r result <"${ast}"
-    rm "${ast}"
-    [[ $result == "32" ]]
+    cleanup_tmpfile "${ast}"
+    if [[ $result != "32" ]] ; then
+	$T_fail "expected ${result} to equal 32"
+	return
+    fi
 }
 
 T_evaluating_a_simple_addition_leaves_the_result() {
-    tmpdir="$(dirname "$(mktemp -u)")"
-    ast="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+    ast="$(setup_tmpfile)"
     rm "${ast}"
     cp -r "fixtures/TwelvePlusThree" "${ast}"
 
     evaluate "${ast}"
 
     read -r result <"${ast}"
-    rm "${ast}"
+    cleanup_tmpfile "${ast}"
     [[ $result == "15" ]]
 }
 
 T_evaluating_a_simple_subtraction_leaves_the_result() {
-    tmpdir="$(dirname "$(mktemp -u)")"
-    ast="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+    ast="$(setup_tmpfile)"
     rm "${ast}"
     cp -r "fixtures/TwelveMinusThree" "${ast}"
 
     evaluate "${ast}"
 
     read -r result <"${ast}"
-    rm "${ast}"
+    cleanup_tmpfile "${ast}"
     [[ $result == "9" ]]    
 }
