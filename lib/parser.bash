@@ -41,7 +41,7 @@ get_lhs() {
     local op="${1:?expected first argument of get_lhs to be an operator to split on}"
     local expr="${2:?expected second argument of get_lhs to be an expression to split}"
 
-    echo "${expr/${op}*}" # remove everything from the op onwards
+    echo "${expr/${op}*}" # remove everything from the first op onwards
 }
 
 get_rhs() {
