@@ -39,19 +39,19 @@ T_parsing_a_simple_add_expression_writes_a_directory() {
     read -r lhs <"${result_path}/LHS"
     if [[ $lhs != "2" ]] ; then
 	#shellcheck disable=2154
-	$T_fail "expected result LHS to be 2"
+	$T_fail "expected $lhs to be 2"
 	return
     fi
     read -r op <"${result_path}/operator"
     if [[ $op != "+" ]] ; then
 	#shellcheck disable=2154
-	$T_fail "expected result operator to be +"
+	$T_fail "expected $op to be +"
 	return
     fi
     read -r rhs <"${result_path}/RHS"
     if [[ $rhs != "8" ]] ; then
 	#shellcheck disable=2154
-	$T_fail "expected result RHS to be 8"
+	$T_fail "expected $rhs to be 8"
 	return
     fi
 
@@ -68,19 +68,19 @@ T_parsing_add_expressions_handles_whitespace() {
     read -r lhs <"${result_path}/LHS"
     if [[ $lhs != "2" ]] ; then
 	#shellcheck disable=2154
-	$T_fail "expected result LHS to be 2"
+	$T_fail "expected $lhs to be 2"
 	return
     fi
     read -r op <"${result_path}/operator"
     if [[ $op != "+" ]] ; then
 	#shellcheck disable=2154
-	$T_fail "expected result operator to be +"
+	$T_fail "expected $op operator to be +"
 	return
     fi
     read -r rhs <"${result_path}/RHS"
     if [[ $rhs != "8" ]] ; then
 	#shellcheck disable=2154
-	$T_fail "expected result RHS to be 8"
+	$T_fail "expected $rhs to be 8"
 	return
     fi
 
@@ -97,13 +97,13 @@ T_parsing_complex_add_expressions_works() {
     read -r lhs <"${result_path}/LHS"
     if [[ $lhs != "2" ]] ; then
 	#shellcheck disable=2154
-	$T_fail "expected result LHS to be 2"
+	$T_fail "expected $lhs to be 2"
 	return
     fi
     read -r op <"${result_path}/operator"
     if [[ $op != "+" ]] ; then
     	#shellcheck disable=2154
-    	$T_fail "expected result operator to be +"
+    	$T_fail "expected $op to be +"
 	return
     fi
 
@@ -115,19 +115,19 @@ T_parsing_complex_add_expressions_works() {
     read -r mid <"${result_path}/RHS/LHS"
     if [[ $mid != "8" ]] ; then
     	#shellcheck disable=2154
-    	$T_fail "expected result RHS/LHS to be 8"
+    	$T_fail "expected $mid to be 8"
 	return
     fi
     read -r op <"${result_path}/RHS/operator"
     if [[ $op != "+" ]] ; then
     	#shellcheck disable=2154
-    	$T_fail "expected result RHS operator to be +"
+    	$T_fail "expected $op to be +"
 	return
     fi
     read -r rhs <"${result_path}/RHS/RHS"
     if [[ $rhs != "37" ]] ; then
     	#shellcheck disable=2154
-    	$T_fail "expected result RHS/RHS to be 37"
+    	$T_fail "expected $rhs to be 37"
 	return
     fi
 
@@ -144,19 +144,19 @@ T_parsing_subtraction_writes_a_directory() {
     read -r lhs <"${result_path}/LHS"
     if [[ $lhs != "26" ]] ; then
 	#shellcheck disable=2154
-	$T_fail "expected result LHS to be 26"
+	$T_fail "expected $lhs to be 26"
 	return
     fi
     read -r op <"${result_path}/operator"
     if [[ $op != "-" ]] ; then
 	#shellcheck disable=2154
-	$T_fail "expected result operator to be -"
+	$T_fail "expected $op to be -"
 	return
     fi
     read -r rhs <"${result_path}/RHS"
     if [[ $rhs != "9" ]] ; then
 	#shellcheck disable=2154
-	$T_fail "expected result RHS to be 9"
+	$T_fail "expected $rhs to be 9"
 	return
     fi
 
