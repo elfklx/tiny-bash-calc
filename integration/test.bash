@@ -32,5 +32,9 @@ T_calc_evaluates_multiple_expressions() {
 	$T_fail "expected ${result[1]} to be 11"
 	return
     fi
-    [[ "${result[3]}" == "7" ]]
+    if [[ ! "${result[3]}" == "7" ]] ; then
+	# shellcheck disable=SC2154
+	$T_fail "expected ${result[3]} to be 7"
+	return
+    fi
 }
