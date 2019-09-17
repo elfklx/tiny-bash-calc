@@ -42,6 +42,5 @@ T_evaluating_a_simple_subtraction_leaves_the_result() {
 
     read -r result <"${ast}"
     rm "${ast}"
-    [[ $result == "9" ]]
-    
+    [[ $result == "9" ]]    
 }
