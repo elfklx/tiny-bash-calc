@@ -5,9 +5,10 @@ set -euo pipefail
 [[ -z "${DEBUG:-""}" ]] || set -x
 
 T_calc_evaluates_an_expression() {
-    EXPR="8 + 3\nq"
-    RESULT=$(echo -e "$EXPR" | ./calc)
-    [[ "$RESULT" =~ "11" ]]
+    local expr="8 + 3\nq"
+    local result
+    result=$(echo -e "$expr" | ./calc)
+    [[ "$result" =~ "11" ]]
 }
 
 T_calc_evaluates_multiple_expressions() {
