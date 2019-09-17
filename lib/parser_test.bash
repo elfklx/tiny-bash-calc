@@ -8,8 +8,22 @@ set -u
 . lib/parser.bash
 
 setup_tmpfile() {
+    local tmpdir
     tmpdir="$(dirname "$(mktemp -u)")"
     mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp"
+}
+
+cleanup_tmpfile() {
+    local tmpfile="${1:?Expected first arument to cleanup_tmpfile to be a tmpfile to clean up}"
+    local tmpdir
+    tmpdir="$(dirname "$(mktemp -u)")"
+
+    if [[ ! "$tmpfile" =~ ^$tmpdir ]] ; then
+	#shellcheck disable=2154
+	$T_fail "Can't clean up non-temporary files"
+    fi
+
+    rm -r "$tmpfile"
 }
 
 T_parsing_number_writes_a_single_file() {
@@ -18,13 +32,12 @@ T_parsing_number_writes_a_single_file() {
     parse "87" "${result_file}"
 
     read -r result <"${result_file}"
-    rm "${result_file}"
+    cleanup_tmpfile "${result_file}"
     [[ $result == "87" ]]
 }
 
 T_parsing_a_simple_add_expression_writes_a_directory() {
-    tmpdir="$(dirname "$(mktemp -u)")"
-    result_path="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+    result_path="$(setup_tmpfile)"
 
     parse "2+8" "${result_path}"
 
@@ -53,8 +66,7 @@ T_parsing_a_simple_add_expression_writes_a_directory() {
 }
 
 T_parsing_add_expressions_handles_whitespace() {
-    tmpdir="$(dirname "$(mktemp -u)")"
-    result_path="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+    result_path="$(setup_tmpfile)"
 
     parse " 2 + 8 " "${result_path}"
 
@@ -79,8 +91,7 @@ T_parsing_add_expressions_handles_whitespace() {
 }
 
 _parsing_complex_add_expressions_works() {
-    tmpdir="$(dirname "$(mktemp -u)")"
-    result_path="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+    result_path="$(setup_tmpfile)"
 
     parse "2+8+37" "${result_path}"
 
@@ -125,8 +136,7 @@ _parsing_complex_add_expressions_works() {
 }
 
 T_parsing_subtraction_writes_a_directory() {
-    tmpdir="$(dirname "$(mktemp -u)")"
-    result_path="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+    result_path="$(setup_tmpfile)"
 
     parse " 26 - 9 " "${result_path}"
 
