@@ -24,6 +24,7 @@ T_exp_eval_uses_parser_and_evaluator() {
 	if [[ ${1} != "some expression" ]] ; then
 	    # shellcheck disable=2154
 	    $T_fail "expected parse to be passed the expression to evaluate"
+	    return
 	fi
 	echo "path to tree"
     }
@@ -32,6 +33,7 @@ T_exp_eval_uses_parser_and_evaluator() {
 	if [[ ${1} != "path to tree" ]] ; then
 	    # shellcheck disable=2154
 	    $T_fail "expected tree_eval to be passed the result of parse"
+	    return
 	fi
 	echo "fake result"
     }
