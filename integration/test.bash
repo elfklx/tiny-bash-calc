@@ -8,7 +8,11 @@ T_calc_evaluates_an_expression() {
     local expr="8 + 3\nq"
     local result
     result=$(echo -e "$expr" | ./calc)
-    [[ "$result" =~ "11" ]]
+    if [[ ! "$result" =~ "11" ]] ; then
+	# shellcheck disable=SC2154
+	$T_fail "expected $result to give 11"
+	return
+    fi
 }
 
 T_calc_evaluates_multiple_expressions() {
@@ -16,7 +20,7 @@ T_calc_evaluates_multiple_expressions() {
     local result
     result=$(echo -e "$expr" | ./calc)
     if [[ ! $result =~ "11" ]] ; then
-	  # shellcheck disable=SC2154
+	# shellcheck disable=SC2154
 	$T_fail "first expression gave $result -- expected 11"
 	return
     fi
