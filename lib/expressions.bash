@@ -14,6 +14,14 @@ exp_eval() {
 }
 
 exp_eval_new() {
-    tree="$(parse "${1}")"
-    evaluate "${tree}"
+    local tmpdir
+    tmpdir="$(dirname "$(mktemp -u)")"
+    local ast_path
+    ast_path="$(mktemp "${tmpdir}/calc.XXXXXXXXXXXX.tmp")"
+
+    parse "${1}" "${ast_path}"
+    evaluate "${ast_path}"
+
+    cat "${ast_path}"
+    rm "${ast_path}"
 }

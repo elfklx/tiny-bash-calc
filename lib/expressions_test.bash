@@ -18,7 +18,8 @@ T_expr_subtraction() {
 }
 
 T_exp_eval_uses_parser_and_evaluator() {
-    expr="some expression"
+    local expr="some expression"
+    export _CALC_TEST_AST_PATH=""
     
     function parse() {
 	if [[ ${1} != "some expression" ]] ; then
@@ -26,16 +27,17 @@ T_exp_eval_uses_parser_and_evaluator() {
 	    $T_fail "expected parse to be passed the expression to evaluate"
 	    return
 	fi
-	echo "path to tree"
+
+	_CALC_TEST_AST_PATH="$2"
     }
     
     function evaluate() {
-	if [[ ${1} != "path to tree" ]] ; then
+	if [[ ${1} != "${_CALC_TEST_AST_PATH}" ]] ; then
 	    # shellcheck disable=2154
-	    $T_fail "expected tree_eval to be passed the result of parse"
+	    $T_fail "expected tree_eval to be passed the path to the parsed AST"
 	    return
 	fi
-	echo "fake result"
+	echo "fake result" > "${1}"
     }
 
     RESULT="$(exp_eval_new "${expr}")"
