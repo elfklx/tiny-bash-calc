@@ -12,7 +12,7 @@ T_calc_evaluates_an_expression() {
 	result[i]="$line"
 	i=$(( i + 1 ))
     done
-    if [[ ! "${result[1]}" =~ "11" ]] ; then
+    if [[ ! "${result[1]}" == "11" ]] ; then
 	# shellcheck disable=SC2154
 	$T_fail "expected ${result[1]} to give 11"
 	return
