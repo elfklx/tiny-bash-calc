@@ -9,12 +9,20 @@ set -euo pipefail
 
 T_expr_addition() {
     RESULT=$(exp_eval "1 + 1")
-    [[ $RESULT == "2" ]]
+    if [[ $RESULT != "2" ]] ; then
+	# shellcheck disable=2154
+	$T_fail "expected ${RESULT} to equal 2"
+	return
+    fi
 }
 
 T_expr_subtraction() {
     RESULT=$(exp_eval "12 - 3")
-    [[ $RESULT == "9" ]]
+    if [[ $RESULT != "9" ]] ; then
+	# shellcheck disable=2154
+	$T_fail "expected ${RESULT} to equal 9"
+	return
+    fi
 }
 
 T_exp_eval_uses_parser_and_evaluator() {
