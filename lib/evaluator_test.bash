@@ -32,7 +32,10 @@ T_evaluating_a_simple_addition_leaves_the_result() {
 
     read -r result <"${ast}"
     cleanup_tmpfile "${ast}"
-    [[ $result == "15" ]]
+    if [[ $result != "15" ]] ; then
+	$T_fail "expected ${result} to equal 15"
+	return
+    fi
 }
 
 T_evaluating_a_simple_subtraction_leaves_the_result() {
