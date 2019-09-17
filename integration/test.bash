@@ -7,10 +7,14 @@ set -euo pipefail
 T_calc_evaluates_an_expression() {
     local expr="8 + 3\nq"
     local result
-    result=$(echo -e "$expr" | ./calc)
-    if [[ ! "$result" =~ "11" ]] ; then
+    local i=0
+    for line in $(echo -e "$expr" | ./calc) ; do
+	result[i]="$line"
+	i=$(( i + 1 ))
+    done
+    if [[ ! "${result[1]}" =~ "11" ]] ; then
 	# shellcheck disable=SC2154
-	$T_fail "expected $result to give 11"
+	$T_fail "expected ${result[1]} to give 11"
 	return
     fi
 }
