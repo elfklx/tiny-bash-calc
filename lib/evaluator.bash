@@ -11,6 +11,7 @@ evaluate() {
 	return
     fi
 
+    local lhs rhs op
     lhs="$(cat "${ast}/LHS")"
     rhs="$(cat "${ast}/RHS")"
     op="$(cat "${ast}/operator")"
