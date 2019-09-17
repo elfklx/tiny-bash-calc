@@ -28,7 +28,7 @@ parse_binexp() {
     local ast="${3:?expected third argument of parse_binop to be a path where we write the result}"
 
     local lhs="${expr/${op}*}"
-    local rhs="${expr/*${op}}"
+    local rhs="${expr##${expr/${op}*}${op}}"
     if [[ ! -d "${ast}" ]] ; then mkdir "${ast}" ; fi
     parse "${lhs}" "${ast}/LHS"
     parse "${rhs}" "${ast}/RHS"
