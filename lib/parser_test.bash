@@ -96,7 +96,7 @@ T_parsing_add_expressions_handles_whitespace() {
     cleanup_tmpfile "${result_path}"
 }
 
-_parsing_complex_add_expressions_works() {
+T_parsing_complex_add_expressions_works() {
     result_path="$(setup_tmpfile)"
 
     parse "2+8+37" "${result_path}"
