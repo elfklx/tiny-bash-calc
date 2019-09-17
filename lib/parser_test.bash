@@ -21,6 +21,7 @@ cleanup_tmpfile() {
     if [[ ! "$tmpfile" =~ ^$tmpdir ]] ; then
 	#shellcheck disable=2154
 	$T_fail "Can't clean up non-temporary files"
+	return
     fi
 
     rm -r "$tmpfile"
@@ -44,21 +45,25 @@ T_parsing_a_simple_add_expression_writes_a_directory() {
     if [[ ! -d ${result_path} ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result path to be a directory"
+	return
     fi
     read -r lhs <"${result_path}/LHS"
     if [[ $lhs != "2" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result LHS to be 2"
+	return
     fi
     read -r op <"${result_path}/operator"
     if [[ $op != "+" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result operator to be +"
+	return
     fi
     read -r rhs <"${result_path}/RHS"
     if [[ $rhs != "8" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result RHS to be 8"
+	return
     fi
 
     cleanup_tmpfile "${result_path}"
@@ -73,16 +78,19 @@ T_parsing_add_expressions_handles_whitespace() {
     if [[ $lhs != "2" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result LHS to be 2"
+	return
     fi
     read -r op <"${result_path}/operator"
     if [[ $op != "+" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result operator to be +"
+	return
     fi
     read -r rhs <"${result_path}/RHS"
     if [[ $rhs != "8" ]] ; then
 	#shellcheck disable=2154
 	$T_fail "expected result RHS to be 8"
+	return
     fi
 
     cleanup_tmpfile "${result_path}"
