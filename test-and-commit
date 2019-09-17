@@ -12,6 +12,7 @@ main() {
 	git commit -am "${GDS_TASK:-"tests pass"}"
     else
 	git reset --hard
+	return 1 # tell our editor/IDE that this failed
     fi
 }
 
