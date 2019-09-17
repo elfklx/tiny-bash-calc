@@ -27,10 +27,29 @@ parse_binexp() {
     local expr="${2:?expected second argument of parse_binop to be an expression}"
     local ast="${3:?expected third argument of parse_binop to be a path where we write the result}"
 
-    local lhs="${expr/${op}*}"
-    local rhs="${expr##${expr/${op}*}${op}}"
+    local lhs
+    lhs="$(get_lhs "${op}" "${expr}")"
+    local rhs
+    rhs="$(get_rhs "${op}" "${expr}")"
     if [[ ! -d "${ast}" ]] ; then mkdir "${ast}" ; fi
     parse "${lhs}" "${ast}/LHS"
     parse "${rhs}" "${ast}/RHS"
     echo "${op}" > "${ast}/operator"    
+}
+
+get_lhs() {
+    local op="${1:?expected first argument of get_lhs to be an operator to split on}"
+    local expr="${2:?expected second argument of get_lhs to be an expression to split}"
+
+    echo "${expr/${op}*}" # remove everything from the op onwards
+}
+
+get_rhs() {
+    local op="${1:?expected first argument of get_lhs to be an operator to split on}"
+    local expr="${2:?expected second argument of get_lhs to be an expression to split}"
+
+    local lhs
+    lhs="$(get_lhs "${op}" "${expr}")"
+
+    echo "${expr#${lhs}*${op}}" # remove the lhs and the first occurance of the op
 }
