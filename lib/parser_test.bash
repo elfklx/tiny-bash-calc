@@ -18,7 +18,10 @@ T_parsing_number_writes_a_single_file() {
     read -r result <"${result_file}"
     cleanup_tmpfile "${result_file}"
 
-    [[ $result == "87" ]]
+    if [[ $result != "87" ]] ; then
+	$T_fail "expected $result to equal 87"
+	return
+    fi
 }
 
 T_parsing_a_simple_add_expression_writes_a_directory() {
