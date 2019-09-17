@@ -14,7 +14,7 @@ T_calc_evaluates_an_expression() {
     done
     if [[ ! "${result[1]}" == "11" ]] ; then
 	# shellcheck disable=SC2154
-	$T_fail "expected ${result[1]} to give 11"
+	$T_fail "expected ${result[1]} to be 11"
 	return
     fi
 }
@@ -22,11 +22,15 @@ T_calc_evaluates_an_expression() {
 T_calc_evaluates_multiple_expressions() {
     local expr="8 + 3\n12 - 5\nq"
     local result
-    result=$(echo -e "$expr" | ./calc)
-    if [[ ! $result =~ "11" ]] ; then
+    local i=0
+    for line in $(echo -e "$expr" | ./calc) ; do
+	result[i]="$line"
+	i=$(( i + 1 ))
+    done
+    if [[ ! "${result[1]}" == "11" ]] ; then
 	# shellcheck disable=SC2154
-	$T_fail "first expression gave $result -- expected 11"
+	$T_fail "expected ${result[1]} to be 11"
 	return
     fi
-    [[ "$result" =~ "7" ]]
+    [[ "${result[3]}" =~ "7" ]]
 }
