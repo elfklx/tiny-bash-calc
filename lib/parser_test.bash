@@ -10,6 +10,7 @@ set -euo pipefail
 . lib/parser.bash
 
 T_parsing_number_writes_a_single_file() {
+    local result_file result
     result_file="$(setup_tmpfile)"
 
     parse "87" "${result_file}"
@@ -21,6 +22,8 @@ T_parsing_number_writes_a_single_file() {
 }
 
 T_parsing_a_simple_add_expression_writes_a_directory() {
+    local result_path lhs op rhs
+
     result_path="$(setup_tmpfile)"
 
     parse "2+8" "${result_path}"
@@ -53,6 +56,8 @@ T_parsing_a_simple_add_expression_writes_a_directory() {
 }
 
 T_parsing_add_expressions_handles_whitespace() {
+    local result_path lhs op rhs
+
     result_path="$(setup_tmpfile)"
 
     parse " 2 + 8 " "${result_path}"
@@ -80,6 +85,8 @@ T_parsing_add_expressions_handles_whitespace() {
 }
 
 T_parsing_complex_add_expressions_works() {
+    local result_path lhs op mid rhs
+
     result_path="$(setup_tmpfile)"
 
     parse "2+8+37" "${result_path}"
@@ -125,6 +132,8 @@ T_parsing_complex_add_expressions_works() {
 }
 
 T_parsing_subtraction_writes_a_directory() {
+    local result_path lhs op rhs
+    
     result_path="$(setup_tmpfile)"
 
     parse " 26 - 9 " "${result_path}"
