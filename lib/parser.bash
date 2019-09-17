@@ -27,11 +27,12 @@ parse_binexp() {
     local expr="${2:?expected second argument of parse_binop to be an expression}"
     local ast="${3:?expected third argument of parse_binop to be a path where we write the result}"
 
-    local lhs
+    local lhs rhs
     lhs="$(get_lhs "${op}" "${expr}")"
-    local rhs
     rhs="$(get_rhs "${op}" "${expr}")"
+
     if [[ ! -d "${ast}" ]] ; then mkdir "${ast}" ; fi
+
     parse "${lhs}" "${ast}/LHS"
     parse "${rhs}" "${ast}/RHS"
     echo "${op}" > "${ast}/operator"    
