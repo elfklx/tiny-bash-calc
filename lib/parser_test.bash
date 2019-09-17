@@ -14,6 +14,7 @@ T_parsing_number_writes_a_single_file() {
 
     read -r result <"${result_file}"
     cleanup_tmpfile "${result_file}"
+
     [[ $result == "87" ]]
 }
 
