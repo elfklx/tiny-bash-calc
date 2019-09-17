@@ -29,7 +29,7 @@ T_exp_eval_uses_parser_and_evaluator() {
 	echo "path to tree"
     }
     
-    function tree_eval() {
+    function evaluate() {
 	if [[ ${1} != "path to tree" ]] ; then
 	    # shellcheck disable=2154
 	    $T_fail "expected tree_eval to be passed the result of parse"
