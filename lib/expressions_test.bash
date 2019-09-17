@@ -9,7 +9,7 @@ set -euo pipefail
 
 T_expr_addition() {
     RESULT=$(exp_eval "1 + 1")
-    assert_equal "$RESULT" 3
+    assert_equal "$RESULT" 4
 }
 
 T_expr_subtraction() {
