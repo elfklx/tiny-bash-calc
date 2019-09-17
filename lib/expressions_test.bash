@@ -54,6 +54,6 @@ assert_equal() {
     if [[ "$actual" != "$expected" ]] ; then
 	# shellcheck disable=2154
 	$T_fail "expected ${actual} to equal ${expected}"
-	return
+	return 1
     fi
 }
