@@ -75,7 +75,7 @@ T_evaluating_a_simple_multiplication_leaves_the_result() {
 test_fixture_evaluation() {
     local ast fixture_path expected_result
     fixture_path="${1:?first argument to test_fixture_evaluation should be a fixture}"
-    expected_result="${1:?second argument to test_fixture_evaluation should be our expected result}"
+    expected_result="${2:?second argument to test_fixture_evaluation should be our expected result}"
     ast="$(setup_tmpfile)"
     rm "${ast}"
     cp -r "${fixture_path}" "${ast}"
