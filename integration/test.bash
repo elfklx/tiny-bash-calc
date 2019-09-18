@@ -42,3 +42,20 @@ T_calc_evaluates_multiple_expressions() {
 	return
     fi
 }
+
+_calc_can_do_multiplication() {
+    local expr="8 * 3\nq"
+    local result
+    local i=0
+
+    for line in $(echo -e "$expr" | ./calc) ; do
+	result[i]="$line"
+	i=$(( i + 1 ))
+    done
+
+    if [[ ! "${result[1]}" == "24" ]] ; then
+	# shellcheck disable=SC2154
+	$T_fail "expected ${result[1]} to be 24"
+	return
+    fi
+}
