@@ -18,7 +18,7 @@ parse() {
 	parse_binexp "+" "${expr}" "${ast}"
     elif [[ "${expr}" =~ "*" ]] ; then
 	# multiplication expression
-	parse_mult "${expr}" "${ast}"
+	parse_binexp "\*" "${expr}" "${ast}"
     else
 	# number expression    
 	echo "${expr}" > "${ast}"
