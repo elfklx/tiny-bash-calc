@@ -163,7 +163,7 @@ T_parsing_subtraction_writes_a_directory() {
     cleanup_tmpfile "${result_path}"    
 }
 
-_parsing_multiplication_writes_a_directory() {
+T_parsing_multiplication_writes_a_directory() {
     local result_path lhs op rhs
     
     result_path="$(setup_tmpfile)"
@@ -177,9 +177,9 @@ _parsing_multiplication_writes_a_directory() {
 	return
     fi
     read -r op <"${result_path}/operator"
-    if [[ $op != "*" ]] ; then
+    if [[ $op != "\*" ]] ; then
 	#shellcheck disable=2154
-	$T_fail "expected $op to be -"
+	$T_fail "expected $op to be *"
 	return
     fi
     read -r rhs <"${result_path}/RHS"
