@@ -43,7 +43,7 @@ T_calc_evaluates_multiple_expressions() {
     fi
 }
 
-_calc_can_do_multiplication() {
+T_calc_can_do_multiplication() {
     local expr="8 * 3\nq"
     local result
     local i=0
