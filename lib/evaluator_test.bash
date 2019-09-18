@@ -25,19 +25,7 @@ T_evaluating_a_number_is_a_no_op() {
 }
 
 T_evaluating_a_simple_addition_leaves_the_result() {
-    local ast
-    ast="$(setup_tmpfile)"
-    rm "${ast}"
-    cp -r "fixtures/TwelvePlusThree" "${ast}"
-
-    evaluate "${ast}"
-
-    read -r result <"${ast}"
-    cleanup_tmpfile "${ast}"
-    if [[ $result != "15" ]] ; then
-	$T_fail "expected ${result} to equal 15"
-	return
-    fi
+    test_fixture_evaluation "fixtures/TwelvePlusThree" 15
 }
 
 T_evaluating_a_simple_subtraction_leaves_the_result() {
