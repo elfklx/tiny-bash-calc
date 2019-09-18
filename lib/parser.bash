@@ -16,6 +16,9 @@ parse() {
     elif [[ "${expr}" =~ "+" ]] ; then
 	# add expression
 	parse_binexp "+" "${expr}" "${ast}"
+    elif [[ "${expr}" =~ "*" ]] ; then
+	# add expression
+	parse_binexp "*" "${expr}" "${ast}"
     else
 	# number expression    
 	echo "${expr}" > "${ast}"
