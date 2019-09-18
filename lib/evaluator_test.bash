@@ -56,7 +56,7 @@ T_evaluating_a_simple_subtraction_leaves_the_result() {
     fi
 }
 
-_evaluating_a_simple_multiplication_leaves_the_result() {
+T_evaluating_a_simple_multiplication_leaves_the_result() {
     local ast
     ast="$(setup_tmpfile)"
     rm "${ast}"
