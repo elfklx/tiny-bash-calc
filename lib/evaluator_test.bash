@@ -55,3 +55,19 @@ T_evaluating_a_simple_subtraction_leaves_the_result() {
 	return
     fi
 }
+
+_evaluating_a_simple_multiplication_leaves_the_result() {
+    local ast
+    ast="$(setup_tmpfile)"
+    rm "${ast}"
+    cp -r "fixtures/TwelveTimesThree" "${ast}"
+
+    evaluate "${ast}"
+
+    read -r result <"${ast}"
+    cleanup_tmpfile "${ast}"
+    if [[ $result != "36" ]] ; then
+	$T_fail "expected ${result} to equal 36"
+	return
+    fi
+}
