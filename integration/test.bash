@@ -5,9 +5,7 @@ set -euo pipefail
 [[ -z "${DEBUG:-""}" ]] || set -x
 
 T_calc_evaluates_an_expression() {
-    local expr="8 + 3\nq"
-    local result
-    local i=0
+    local expr="8 + 3\nq" result i=0
 
     for line in $(echo -e "$expr" | ./calc) ; do
 	result[i]="$line"
