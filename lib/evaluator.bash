@@ -21,7 +21,9 @@ evaluate() {
     rmdir "${ast}"
     if [[ "${op}" == "+" ]] ; then
 	echo "$(( lhs + rhs ))" > "${ast}"
-    else
+    elif [[ "${op}" == "-" ]] ; then
 	echo "$(( lhs - rhs ))" > "${ast}"
+    else
+	echo "$(( lhs * rhs ))" > "${ast}"
     fi
 }
