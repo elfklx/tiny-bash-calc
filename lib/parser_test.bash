@@ -164,32 +164,7 @@ T_parsing_subtraction_writes_a_directory() {
 }
 
 T_parsing_multiplication_writes_a_directory() {
-    local result_path lhs op rhs
-    
-    result_path="$(setup_tmpfile)"
-
-    parse " 3 * 84 " "${result_path}"
-
-    read -r lhs <"${result_path}/LHS"
-    if [[ $lhs != "3" ]] ; then
-	#shellcheck disable=2154
-	$T_fail "expected $lhs to be 3"
-	return
-    fi
-    read -r op <"${result_path}/operator"
-    if [[ $op != "\*" ]] ; then
-	#shellcheck disable=2154
-	$T_fail "expected $op to be *"
-	return
-    fi
-    read -r rhs <"${result_path}/RHS"
-    if [[ $rhs != "84" ]] ; then
-	#shellcheck disable=2154
-	$T_fail "expected $rhs to be 84"
-	return
-    fi
-
-    cleanup_tmpfile "${result_path}"    
+    test_parsing_simple_expression " 3 * 84 " "3" "\*" "84"
 }
 
 test_parsing_simple_expression() {
