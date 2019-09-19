@@ -194,9 +194,9 @@ T_parsing_multiplication_writes_a_directory() {
 
 test_parsing_simple_expression() {
     local expr="${1:?first argument to test_parsing_simple_expression should be an expression}"
-    local exp_lhs="${2:second argument to test_parsing_simple_expression should be expected lhs}"
-    local exp_op="${3:third argument to test_parsing_simple_expression should be expected operator}"
-    local exp_rhs="${4:fourth argument to test_parsing_simple_expression should be expected rhs}"
+    local exp_lhs="${2:?second argument to test_parsing_simple_expression should be expected lhs}"
+    local exp_op="${3:?third argument to test_parsing_simple_expression should be expected operator}"
+    local exp_rhs="${4:?fourth argument to test_parsing_simple_expression should be expected rhs}"
 
     local result_path lhs op rhs
     
