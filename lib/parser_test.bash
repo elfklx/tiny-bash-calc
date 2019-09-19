@@ -25,37 +25,7 @@ T_parsing_number_writes_a_single_file() {
 }
 
 T_parsing_a_simple_add_expression_writes_a_directory() {
-    local result_path lhs op rhs
-
-    result_path="$(setup_tmpfile)"
-
-    parse "2+8" "${result_path}"
-
-    if [[ ! -d ${result_path} ]] ; then
-	#shellcheck disable=2154
-	$T_fail "expected result path to be a directory"
-	return
-    fi
-    read -r lhs <"${result_path}/LHS"
-    if [[ $lhs != "2" ]] ; then
-	#shellcheck disable=2154
-	$T_fail "expected $lhs to be 2"
-	return
-    fi
-    read -r op <"${result_path}/operator"
-    if [[ $op != "+" ]] ; then
-	#shellcheck disable=2154
-	$T_fail "expected $op to be +"
-	return
-    fi
-    read -r rhs <"${result_path}/RHS"
-    if [[ $rhs != "8" ]] ; then
-	#shellcheck disable=2154
-	$T_fail "expected $rhs to be 8"
-	return
-    fi
-
-    cleanup_tmpfile "${result_path}"
+    test_parsing_simple_expression "2+8" "2" "+" "8"
 }
 
 T_parsing_add_expressions_handles_whitespace() {
