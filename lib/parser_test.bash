@@ -191,3 +191,37 @@ T_parsing_multiplication_writes_a_directory() {
 
     cleanup_tmpfile "${result_path}"    
 }
+
+test_parsing_simple_expression() {
+    local expr="${1:?first argument to test_parsing_simple_expression should be an expression}"
+    local exp_lhs="${2:second argument to test_parsing_simple_expression should be expected lhs}"
+    local exp_op="${3:third argument to test_parsing_simple_expression should be expected operator}"
+    local exp_rhs="${4:fourth argument to test_parsing_simple_expression should be expected rhs}"
+
+    local result_path lhs op rhs
+    
+    result_path="$(setup_tmpfile)"
+
+    parse "${expr}" "${result_path}"
+
+    read -r lhs <"${result_path}/LHS"
+    if [[ $lhs != "${exp_lhs}" ]] ; then
+	#shellcheck disable=2154
+	$T_fail "expected $lhs to be ${exp_lhs}"
+	return
+    fi
+    read -r op <"${result_path}/operator"
+    if [[ $op != "${exp_op}" ]] ; then
+	#shellcheck disable=2154
+	$T_fail "expected $op to be ${exp_op}"
+	return
+    fi
+    read -r rhs <"${result_path}/RHS"
+    if [[ $rhs != "${exp_rhs}" ]] ; then
+	#shellcheck disable=2154
+	$T_fail "expected $rhs to be ${exp_rhs}"
+	return
+    fi
+
+    cleanup_tmpfile "${result_path}"    
+}
