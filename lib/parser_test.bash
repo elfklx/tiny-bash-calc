@@ -32,6 +32,14 @@ T_parsing_add_expressions_handles_whitespace() {
     test_parsing_simple_expression " 2 + 8 " "2" "+" "8"
 }
 
+T_parsing_subtraction_writes_a_directory() {
+    test_parsing_simple_expression " 26 - 9 " "26" "-" "9"
+}
+
+T_parsing_multiplication_writes_a_directory() {
+    test_parsing_simple_expression " 3 * 84 " "3" "\*" "84"
+}
+
 T_parsing_complex_add_expressions_works() {
     local result_path lhs op mid rhs
 
@@ -77,14 +85,6 @@ T_parsing_complex_add_expressions_works() {
     fi
 
     cleanup_tmpfile "${result_path}" 
-}
-
-T_parsing_subtraction_writes_a_directory() {
-    test_parsing_simple_expression " 26 - 9 " "26" "-" "9"
-}
-
-T_parsing_multiplication_writes_a_directory() {
-    test_parsing_simple_expression " 3 * 84 " "3" "\*" "84"
 }
 
 test_parsing_simple_expression() {
