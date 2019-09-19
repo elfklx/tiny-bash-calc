@@ -135,32 +135,7 @@ T_parsing_complex_add_expressions_works() {
 }
 
 T_parsing_subtraction_writes_a_directory() {
-    local result_path lhs op rhs
-    
-    result_path="$(setup_tmpfile)"
-
-    parse " 26 - 9 " "${result_path}"
-
-    read -r lhs <"${result_path}/LHS"
-    if [[ $lhs != "26" ]] ; then
-	#shellcheck disable=2154
-	$T_fail "expected $lhs to be 26"
-	return
-    fi
-    read -r op <"${result_path}/operator"
-    if [[ $op != "-" ]] ; then
-	#shellcheck disable=2154
-	$T_fail "expected $op to be -"
-	return
-    fi
-    read -r rhs <"${result_path}/RHS"
-    if [[ $rhs != "9" ]] ; then
-	#shellcheck disable=2154
-	$T_fail "expected $rhs to be 9"
-	return
-    fi
-
-    cleanup_tmpfile "${result_path}"    
+    test_parsing_simple_expression " 26 - 9 " "26" "-" "9"
 }
 
 T_parsing_multiplication_writes_a_directory() {
