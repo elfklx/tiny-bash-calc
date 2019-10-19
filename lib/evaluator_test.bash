@@ -36,8 +36,8 @@ T_evaluating_a_simple_multiplication_leaves_the_result() {
     test_fixture_evaluation "fixtures/TwelveTimesThree" 36
 }
 
-_evaluating_a_complex_expression_leaves_the_result() {
-    test_fixture_evaluation "fixtures/OnePlusTwoTimesThree" 36
+T_evaluating_a_complex_expression_leaves_the_result() {
+    test_fixture_evaluation "fixtures/OnePlusTwoTimesThree" 7
 }
 
 test_fixture_evaluation() {
