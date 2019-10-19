@@ -11,6 +11,9 @@ evaluate() {
 	return
     fi
 
+    evaluate "${ast}/LHS"
+    evaluate "${ast}/RHS"
+
     local lhs rhs op
     lhs="$(cat "${ast}/LHS")"
     rhs="$(cat "${ast}/RHS")"
