@@ -54,7 +54,7 @@ T_calc_can_do_multiplication() {
     fi
 }
 
-_calc_can_do_complex_expressions() {
+T_calc_can_do_complex_expressions() {
     local expr="2 + 3 * 4\nq" result i=0
 
     for line in $(echo -e "$expr" | ./calc) ; do
