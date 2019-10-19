@@ -53,3 +53,18 @@ T_calc_can_do_multiplication() {
 	return
     fi
 }
+
+_calc_can_do_complex_expressions() {
+    local expr="2 + 3 * 4\nq" result i=0
+
+    for line in $(echo -e "$expr" | ./calc) ; do
+	result[i]="$line"
+	i=$(( i + 1))
+    done
+
+    if [[ ! "${result[1]}" == "14" ]] ; then
+	# shellcheck disable=SC2154
+	$T_fail "expected ${result[1]} to be 14"
+	return
+    fi
+}
