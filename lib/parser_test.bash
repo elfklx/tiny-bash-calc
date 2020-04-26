@@ -40,6 +40,10 @@ T_parsing_multiplication_writes_a_directory() {
     test_parsing_simple_expression " 3 * 84 " "3" "\*" "84"
 }
 
+parsing_subtraction_writes_a_directory() {
+    test_parsing_simple_expression " 9 / 3 " "9" "\/" "3"
+}
+
 T_parsing_complex_add_expressions_works() {
     local result_path lhs op mid rhs
 
