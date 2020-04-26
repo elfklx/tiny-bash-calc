@@ -54,6 +54,21 @@ T_calc_can_do_multiplication() {
     fi
 }
 
+cal_can_do_division() {
+    local expr="9 / 3\nq" result i=0
+
+    for line in $(echo -e "$expr" | ./calc) ; do
+	result[i]="$line"
+	i=$(( i + 1 ))
+    done
+
+    if [[ ! "${result[1]}" == "3" ]] ; then
+	# shellcheck disable=SC2154
+	$T_fail "expected ${result[1]} to be 3"
+	return
+    fi
+}
+
 T_calc_can_do_complex_expressions() {
     local expr="2 + 3 * 4\nq" result i=0
 
