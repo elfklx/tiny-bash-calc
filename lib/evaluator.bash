@@ -26,7 +26,7 @@ evaluate() {
 	echo "$(( lhs + rhs ))" > "${ast}"
     elif [[ "${op}" == "-" ]] ; then
 	echo "$(( lhs - rhs ))" > "${ast}"
-    elif [[ "${op}" == "/" ]] ; then
+    elif [[ "${op}" =~ "/" ]] ; then
 	echo "$(( lhs / rhs ))" > "${ast}"
     else
 	echo "$(( lhs * rhs ))" > "${ast}"

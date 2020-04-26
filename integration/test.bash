@@ -54,7 +54,7 @@ T_calc_can_do_multiplication() {
     fi
 }
 
-cal_can_do_division() {
+T_cal_can_do_division() {
     local expr="9 / 3\nq" result i=0
 
     for line in $(echo -e "$expr" | ./calc) ; do
